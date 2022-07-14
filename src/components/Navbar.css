@@ -3,6 +3,10 @@
     padding: 20px;
     color: #fff;
   }
+  .icon {
+    color: #FFD8CC;
+    padding: 0 20px;
+  }
   .navbar nav {
     display: flex;
     align-items: center;
@@ -11,7 +15,7 @@
   }
   .navbar a.brand {
     font-family: 'Amatic SC', cursive;
-    font-size: 2rem;
+    font-size: large;
     letter-spacing: 3px;
     margin-right: auto;
     color: #FFD8CC;
@@ -19,12 +23,13 @@
   }
   .navbar a:last-child {
     color: #FFD8CC;
-    font-size: 1rem;
+    font-size: small;
+    font-weight: 200;
     text-decoration: none;
     margin-left: 40px;
     padding: 8px;
     border: 1px solid #FFD8CC;
-    border-radius: 4px;
+    border-radius: 5px;
   }
   .navbar a:last-child:hover {
     background: #FFD8CC;
