@@ -6,9 +6,10 @@ html, body, #root {
 }
 body {
   font-family: 'Josefin Sans', sans-serif;
+  background: #FFEEDB;
+  background-image: url("https://www.transparenttextures.com/patterns/pineapple-cut.png");
   margin: 0;
   font-size: 1.4em;
-  background: #FFEEDB;
   color: #0A1D37;
 }
 h1,h2 {
@@ -21,16 +22,22 @@ h3,p {
   margin: 0;
 }
 input, textarea {
-  color: #0A1D37;
+  color: #333;
   padding: 8px;
   font-size: 1em;
   border-radius: 4px;
-  border: 1px solid #FFBD9B;
-  background-color: #FFEEDB;
+  border: 1px solid #FFD8CC;
+  background-color: #FFD8CC;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
   display: block;
   width: 100%;
   box-sizing: border-box;
 }
+textarea:focus, input:focus{
+  outline: none;
+  border-color: #0A1D37;
+}
+
 .page-title {
   text-align: center;
   margin: 40px auto;
