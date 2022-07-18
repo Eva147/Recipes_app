@@ -21,11 +21,19 @@
     background-color: #0A1D37;
     cursor: pointer;
     text-decoration: none;
-    margin: 3rem auto;
+    margin: 1rem auto;
   }  
 
   .create button:hover {
     background: #FFD8CC;
     border: 1px solid #0A1D37;
     color: #0A1D37;
+  }
+
+  .ingredients {
+    display: flex;
+    align-items: center;
+  }
+  .ingredients button {
+    margin: 0 0 0 1rem;
   }
