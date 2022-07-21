@@ -3,6 +3,7 @@ import React from 'react'
 import './Search.css'
 
 export default function Search() {
+    // get query parameter from the search bar
     return (
         <div>
             Search

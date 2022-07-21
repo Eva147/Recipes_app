@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState, useRef} from 'react'
 import {useFetch} from '../../hooks/useFetch'
-import {Navigate} from "react-router";
+import { Navigate } from "react-router-dom";
 // styles
 import './Create.css'
 
@@ -14,6 +14,7 @@ export default function Create() {
     const [ingredients, setNewIngredients] = useState([])
     // create a ref to focus on the input for ings
     const ingredientInput = useRef(null)
+
 
     const {postData, data, error} = useFetch('http://localhost:3000/recipes', "POST")
 
@@ -41,7 +42,9 @@ export default function Create() {
             <h2 className='page-title'>Add a new recipe:</h2>
 
             {error && <p>{error.message}</p>}
-            {data && ( <Navigate to='/'/> )}
+            {data && (
+            <Navigate to="/"/>
+            )}
 
             <form onSubmit={handleSubmit}>
                 <label>
