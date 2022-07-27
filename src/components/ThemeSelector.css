@@ -1,0 +1,12 @@
+.theme-selector {
+    display: flex;
+    justify-content: flex-start;
+    max-width: 80vw;
+    align-items: center;
+    margin: 10px auto;
+}
+.svg-theme {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}

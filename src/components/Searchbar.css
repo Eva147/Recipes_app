@@ -11,3 +11,11 @@
 .searchbar label {
     color: #FFD8CC;
 }
+
+/* dark mode */
+.searchbar.dark input {
+    background-color: #FFBD9B;
+}
+.searchbar.searchbar.dark label {
+    color: #FFBD9B;
+}

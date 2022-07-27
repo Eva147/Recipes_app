@@ -3,37 +3,55 @@
     max-width: 480px;
     margin: 60px auto;
   }
-  .create label span {
-    display: block;
-    margin: 30px 0 10px;
-  }
-  .create p {
-    margin-top: 10px;
-    font-size: 0.8em;
-  }
-  .create button {
-    display: block;
-    font-size: 1em;
-    color: #FFD8CC;
-    padding: 8px 20px;
-    border: 0;
-    border-radius: 4px;
-    background-color: #0A1D37;
-    cursor: pointer;
-    text-decoration: none;
-    margin: 1rem auto;
-  }  
+/* dark theme */
+.create.dark h2,
+.create.dark label span,
+.create.dark p {
+  color: #FFBD9B;
+}
+.create.dark button,
+.create.dark input,
+.create.dark textarea {
+  color: #222222;
+  background-color: #FFBD9B;
+}
+.create.dark button:hover {
+  color: #FFBD9B;
+  background-color: #222222;
+  border: 1px solid #FFD8CC;
+}
 
-  .create button:hover {
-    background: #FFD8CC;
-    border: 1px solid #0A1D37;
-    color: #0A1D37;
-  }
+.create label span {
+  display: block;
+  margin: 30px 0 10px;
+}
+.create p {
+  margin-top: 10px;
+  font-size: 0.8em;
+}
+.create button {
+  display: block;
+  font-size: 1em;
+  color: #FFD8CC;
+  padding: 8px 20px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #0A1D37;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 1rem auto;
+}  
 
-  .ingredients {
-    display: flex;
-    align-items: center;
-  }
-  .ingredients button {
-    margin: 0 0 0 1rem;
-  }
+.create button:hover {
+  background: #FFD8CC;
+  border: 1px solid #0A1D37;
+  color: #0A1D37;
+}
+
+.ingredients {
+  display: flex;
+  align-items: center;
+}
+.ingredients button {
+  margin: 0 0 0 1rem;
+}

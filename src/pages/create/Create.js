@@ -2,10 +2,13 @@ import React from 'react'
 import {useState, useRef} from 'react'
 import {useFetch} from '../../hooks/useFetch'
 import { Navigate } from "react-router-dom";
+import { useTheme } from '../../hooks/useTheme';
 // styles
 import './Create.css'
 
 export default function Create() {
+
+    const {mode} = useTheme()
 
     const [title, setTitle] = useState('')
     const [method, setMethod] = useState('')
@@ -38,7 +41,7 @@ export default function Create() {
     }
 
     return (
-        <div className='create'>
+        <div className={`create ${mode}`}>
             <h2 className='page-title'>Add a new recipe:</h2>
 
             {error && <p>{error.message}</p>}

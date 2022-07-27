@@ -47,3 +47,9 @@ textarea:focus, input:focus{
   text-align: center;
   margin: 40px auto;
 }
+/* dark theme */
+.page-title.dark,
+.loading.dark,
+.error.dark {
+  color: #FFBD9B;
+}

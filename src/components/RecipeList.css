@@ -5,42 +5,59 @@
     max-width: 80vw;
     margin: 0 auto;
   }
-  .recipe-list .card {
-    background: #FFD8CC;
-    color: #0A1D37;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  .recipe-list .card:hover {
-    transform: scale(1.05);
-  }
-  .recipe-list .card h3 {
-    color: #0A1D37;
-    margin-bottom: 6px;
-  }
-  .recipe-list .card p {
-    color: #999;
-    font-size: 0.9em;
-  }
-  .recipe-list .card div {
-    color: #0A1D37;
-    font-size: 0.7em;
-    margin: 20px 0;
-    line-height: 1.5em;
-  }
-  .recipe-list .card a {
-    color: #FFD8CC;
-    text-decoration: none;
-    display: block;
-    background: #0A1D37;
-    font-size: 0.9em;
-    width: 100px;
-    text-align: center;
-    width: 120px;
-    padding: 8px;
-    border-radius: 4px;
-    margin: 20px auto 0;
-  }
+.recipe-list .card {
+  background: #FFD8CC;
+  color: #0A1D37;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+}
+/* dark mode */
+.recipe-list .card.dark {
+  background: #044343;
+}
+.recipe-list .card.dark h3,
+.recipe-list .card.dark a,
+.recipe-list .card.dark div {
+ color: #FFBD9B;
+}
+.recipe-list .card.dark p {
+  color: #222222;
+}
+.recipe-list .card.dark a {
+  color: #222222;
+  background: #FFBD9B;
+}
+
+.recipe-list .card:hover {
+  transform: scale(1.05);
+}
+.recipe-list .card h3 {
+  color: #0A1D37;
+  margin-bottom: 6px;
+}
+.recipe-list .card p {
+  color: #999;
+  font-size: 0.9em;
+}
+.recipe-list .card div {
+  color: #0A1D37;
+  font-size: 0.7em;
+  margin: 20px 0;
+  line-height: 1.5em;
+}
+.recipe-list .card a {
+  color: #FFD8CC;
+  text-decoration: none;
+  display: block;
+  background: #0A1D37;
+  font-size: 0.9em;
+  width: 100px;
+  text-align: center;
+  width: 120px;
+  padding: 8px;
+  border-radius: 4px;
+  margin: 20px auto 0;
+}

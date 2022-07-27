@@ -1,3 +1,4 @@
+import { useTheme } from '../hooks/useTheme'
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -7,6 +8,8 @@ import './Searchbar.css'
 
 
 export default function Searchbar() {
+
+  const {mode} = useTheme()
 
   const navigate = useNavigate()
   const [term, setTerm] = useState('')
@@ -18,7 +21,7 @@ export default function Searchbar() {
   }
 
   return (
-    <div className='searchbar'>
+    <div className={`searchbar ${mode}`}>
         <form onSubmit={handleSubmit}>
             <label htmlFor='search'>Search:</label>
             <input 
