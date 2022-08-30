@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
-import {useFetch} from '../../hooks/useFetch'
 import { useTheme } from '../../hooks/useTheme'
+// firestore db
+import {db} from '../../firebase/config'
+import {doc, getDoc} from 'firebase/firestore'
 // styles
 import './Recipe.css'
 
@@ -9,8 +11,27 @@ export default function Recipe() {
     const {mode} = useTheme()
     // use id from the path to this component in app.js (everything after ':')
     const { id } = useParams()
-    const url = `http://localhost:3000/recipes/${id}`
-    const { error, isPending, data: recipe } = useFetch(url)
+    const [recipe, setRecipe] = useState(null)
+    const [isPending, setIsPending] = useState(false)
+    const [error, setError] = useState(false)
+
+    useEffect(() => {
+        setIsPending(true)
+        const ref = doc(db, 'recipes', id)
+        getDoc(ref)
+        .then((doc) => {
+            if(doc.exists) {
+                setIsPending(false)
+                setRecipe(doc.data())
+            } else {
+                setIsPending(false)
+                setError('Could not find the recipe.')
+            }
+            }).catch(err => {
+                setError(err.message)
+                setIsPending(false)
+            })
+    }, [id])
     
 
     return (
@@ -27,8 +48,6 @@ export default function Recipe() {
             </ul>
             <p className='method'>{recipe.method}</p>
            </>
-           
-           
            }
         </div>
     );

@@ -1,6 +1,5 @@
 <!-- To run the project -->
-<!-- json-server --watch 'data/db.json'   in terminal (port 3000) -->
-<!-- npm run start  in another terminal (port 3001) -->
+<!-- npm run start -->
 
 
 # Getting Started with Create React App

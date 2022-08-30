@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { useCollection } from '../../hooks/useCollection';
 // import {useFetch} from '../../hooks/useFetch'
-import { useTheme } from '../../hooks/useTheme';
-// firestore db
-import {db} from '../../firebase/config'
-import {collection, getDocs} from 'firebase/firestore'
+import { useTheme } from '../../hooks/useTheme'
 
 // styles
 import './Home.css'
@@ -14,40 +12,13 @@ import RecipeList from '../../components/RecipeList';
 
 export default function Home() {
     const {mode} = useTheme()
-    
-    const [data, setData] = useState(null)
-    const [isPending, setIsPending] = useState(false)
-    const [error, setError] = useState(false)
-
-    useEffect(() => {
-        setIsPending(true)
-        const ref = collection(db, 'recipes')
-        getDocs(ref)
-            .then((snapshot) => {
-                if(snapshot.empty) {
-                    setError('No recipes to load.')
-                    setIsPending(false)
-                } else {
-                    let results = []
-                    snapshot.docs.forEach(doc => {
-                        results.push({id: doc.id, ...doc.data()})
-                    })
-                    setData(results)
-                    setIsPending(false)
-                }
-            }).catch(err => {
-                setError(err.message)
-                setIsPending(false)
-            })
-    }, [])
-
-
+    const {documents: recipes, isPending, error} = useCollection('recipes')
 
     return (
         <div className='home'>
            {error && <p className={`error ${mode}`}>{error}</p>}
            {isPending && <p className='loading'>Loading...</p>}
-           {data && <RecipeList recipes={data} />}
+           {recipes && <RecipeList recipes={recipes} />}
         </div>
     );
 }

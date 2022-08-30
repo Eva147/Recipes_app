@@ -1,15 +1,17 @@
-import React from 'react'
-import {useState, useRef} from 'react'
-import {useFetch} from '../../hooks/useFetch'
-import { Navigate } from "react-router-dom";
+import React from 'react';
+import {useState, useRef} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
+// firestore db
+import {db} from '../../firebase/config';
+import {collection, addDoc} from 'firebase/firestore';
 // styles
-import './Create.css'
+import './Create.css';
+
 
 export default function Create() {
 
     const {mode} = useTheme()
-
     const [title, setTitle] = useState('')
     const [method, setMethod] = useState('')
     const [cookingTime, setCookingTime] = useState('')
@@ -17,13 +19,19 @@ export default function Create() {
     const [ingredients, setNewIngredients] = useState([])
     // create a ref to focus on the input for ings
     const ingredientInput = useRef(null)
+    const navigate = useNavigate();
 
 
-    const {postData, data, error} = useFetch('http://localhost:3000/recipes', "POST")
-
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        postData({title, ingredients, method, cookingTime: `${cookingTime} minutes.`})
+        const ref = collection(db, 'recipes')
+        const doc = {title, ingredients, method, cookingTime: `${cookingTime} minutes.`}
+        try {
+            await addDoc(ref, doc)
+            navigate("/");
+        } catch(error) {
+            console.log(error)
+        }
     }
 
     const handleAdd = e => {
@@ -43,11 +51,6 @@ export default function Create() {
     return (
         <div className={`create ${mode}`}>
             <h2 className='page-title'>Add a new recipe:</h2>
-
-            {error && <p>{error.message}</p>}
-            {data && (
-            <Navigate to="/"/>
-            )}
 
             <form onSubmit={handleSubmit}>
                 <label>
