@@ -15,7 +15,6 @@ export default function Searchbar() {
   const [term, setTerm] = useState('')
 
   const handleSubmit = (e) => {
-    console.log(term)
     e.preventDefault()
     navigate(`/search?q=${term}`)
   }

@@ -24,10 +24,10 @@ export default function Create() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const ref = collection(db, 'recipes')
-        const doc = {title, ingredients, method, cookingTime: `${cookingTime} minutes.`}
+        // const ref = collection(db, 'recipes')
+        // const doc = {title, ingredients, method, cookingTime: `${cookingTime} minutes.`}
         try {
-            await addDoc(ref, doc)
+            // await addDoc(ref, doc)
             navigate("/");
         } catch(error) {
             console.log(error)
