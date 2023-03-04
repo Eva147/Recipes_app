@@ -1,7 +1,6 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Navigate} from 'react-router-dom'
 import SoupKitchenIcon from '@mui/icons-material/SoupKitchen'
-import { useTheme } from '../hooks/useTheme'
 
 // styles
 import './Navbar.css'
@@ -9,14 +8,17 @@ import './Navbar.css'
 import Searchbar from './Searchbar'
 
 // hooks
-// import {useTheme} from '../hooks/useTheme'
+import {useTheme} from '../hooks/useTheme'
+import { useLogout } from '../hooks/useLogout'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 
 export default function Navbar() {
+    const { logout, isPending } = useLogout()
+    const { user } = useAuthContext()
+    const {mode} = useTheme()
 
-  const {mode} = useTheme()
-
-  return (
+    return (
     <div className={`navbar ${mode}`}>
         <nav>
             <SoupKitchenIcon className='icon'/>
@@ -24,6 +26,19 @@ export default function Navbar() {
             <Searchbar />
             <NavLink to='/create'><h1>Create recipe</h1></NavLink>
         </nav>
+        {!user && (
+            <>
+                <li><Navigate to="/login">Login</Navigate></li>
+                <li><Navigate to="/signup">Signup</Navigate></li>
+            </>
+        )}
+
+        {user && (
+            <li>
+                {!isPending && <button className="btn" onClick={logout}>Logout</button>}
+                {isPending && <button className="btn" disabled>Logging out...</button>}
+            </li>
+        )}
     </div>
-  )
-}
+    )
+    }

@@ -1,9 +1,12 @@
 import React from 'react'
-import {Routes, Route} from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
+import { useAuthContext } from './hooks/useAuthContext'
 import { useTheme } from './hooks/useTheme';
 
 
 // page components
+import Login from './pages/auth/login'
+import Signup from './pages/auth/signup'
 import Navbar from './components/Navbar'
 import Home from './pages/home/Home'
 import Create from './pages/create/Create'
@@ -15,19 +18,45 @@ import ThemeSelector from './components/ThemeSelector';
 import './App.css'
 
 function App() {
-
-  const {mode} = useTheme()
+    const { authIsReady, user } = useAuthContext()
+    const {mode} = useTheme()
 
   return (
     <div className={`App ${mode}`}>
-      <Navbar />
-      <ThemeSelector />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/create" element={<Create />} />
-        <Route path="/recipes/:id" element={<Recipe />} />
-        <Route path="/search" element={<Search />} />
-      </Routes>
+        {authIsReady && (
+            <BrowserRouter>
+                <div className="container">
+                    <Navbar />
+                    <ThemeSelector />
+                    <Routes>
+                        <Route exact path="/">
+                            {!user && <Navigate to="/login" />}
+                            {user && <Home />}
+                        </Route>
+                        <Route path="/create">
+                            {!user && <Navigate to="/login" />}
+                            {user && <Create />}
+                        </Route>
+                        <Route path="/recipes/:id">
+                            {!user && <Navigate to="/login" />}
+                            {user && <Recipe />}
+                        </Route>
+                        <Route path="/search">
+                            {!user && <Navigate to="/login" />}
+                            {user && <Search />}
+                        </Route>
+                        <Route path="/login">
+                            {user && <Navigate to="/" /> }
+                            {!user && <Login /> }
+                        </Route>
+                        <Route path="/signup">
+                            {user && user.displayName && <Navigate to="/" /> }
+                            {!user && <Signup /> }
+                        </Route>
+                    </Routes>
+                </div>
+            </BrowserRouter>
+        )}
     </div>
   );
 }
