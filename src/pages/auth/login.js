@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useLogin } from '../../hooks/useLogin'
 
 // styles
-import './login.css'
+import './signup.css'
 
 export default function Login() {
 	const [email, setEmail] = useState('')
@@ -16,7 +16,10 @@ export default function Login() {
 
 	return (
 		<form onSubmit={handleSubmit} className="auth-form">
-			<h2>login</h2>
+			<div className='signup-header'>
+				<h2>Login</h2>
+			</div>
+
 			<label>
 				<span>email:</span>
 				<input

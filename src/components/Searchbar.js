@@ -17,17 +17,19 @@ export default function Searchbar() {
   const handleSubmit = (e) => {
     e.preventDefault()
     navigate(`/search?q=${term}`)
+    setTerm('');
   }
 
   return (
     <div className={`searchbar ${mode}`}>
         <form onSubmit={handleSubmit}>
             <label htmlFor='search'>Search:</label>
-            <input 
+            <input
                 type='text'
                 id='search'
                 onChange={e => setTerm(e.target.value)}
                 required
+                value={term}
             />
         </form>
     </div>

@@ -1,7 +1,7 @@
 .theme-selector {
     display: flex;
     justify-content: flex-start;
-    max-width: 80vw;
+    max-width: 95vw;
     align-items: center;
     margin: 10px auto;
 }

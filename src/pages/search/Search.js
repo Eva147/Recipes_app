@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
 import { useCollection } from '../../hooks/useCollection';
@@ -15,8 +15,11 @@ export default function Search() {
     const queryParams = new URLSearchParams(queryString)
     const q = queryParams.get('q')
 
-    const {documents: recipes, isPending, error} = useCollection('recipes', q)
-    
+    const {documents: recipes, isPending, error} = useCollection(
+      'recipes',
+      ['title', 'array-contains', q],
+    );
+
     return (
         <div>
             <h2 className={`page-title ${mode}`}>Recipes including "{q}"</h2>

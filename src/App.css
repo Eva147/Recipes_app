@@ -3,6 +3,5 @@
 }
 /* dark mode */
 .App.dark {
-  background: #222222;
-  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+  background: #222222 url("https://www.transparenttextures.com/patterns/stardust.png");
 }

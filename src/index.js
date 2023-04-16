@@ -1,12 +1,11 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {ThemeProvider} from './context/ThemeContext'
 import {AuthContextProvider} from "./context/AuthContext";
 
-createRoot(document.getElementById('root')
-).render(
+ReactDOM.render(
     <React.StrictMode>
         <AuthContextProvider>
             <ThemeProvider>
@@ -14,4 +13,5 @@ createRoot(document.getElementById('root')
             </ThemeProvider>
         </AuthContextProvider>
     </React.StrictMode>,
-)
+    document.getElementById('root')
+);

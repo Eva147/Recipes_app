@@ -29,30 +29,12 @@ function App() {
                     <Navbar />
                     <ThemeSelector />
                     <Routes>
-                        <Route exact path="/">
-                            {!user && <Navigate to="/login" />}
-                            {user && <Home />}
-                        </Route>
-                        <Route path="/create">
-                            {!user && <Navigate to="/login" />}
-                            {user && <Create />}
-                        </Route>
-                        <Route path="/recipes/:id">
-                            {!user && <Navigate to="/login" />}
-                            {user && <Recipe />}
-                        </Route>
-                        <Route path="/search">
-                            {!user && <Navigate to="/login" />}
-                            {user && <Search />}
-                        </Route>
-                        <Route path="/login">
-                            {user && <Navigate to="/" /> }
-                            {!user && <Login /> }
-                        </Route>
-                        <Route path="/signup">
-                            {user && user.displayName && <Navigate to="/" /> }
-                            {!user && <Signup /> }
-                        </Route>
+                        <Route exact path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+                        <Route path="/create" element={user ? <Create /> : <Navigate to="/login" />} />
+                        <Route path="/recipes/:id" element={user ? <Recipe /> : <Navigate to="/login" />} />
+                        <Route path="/search" element={user ? <Search /> : <Navigate to="/login" />} />
+                        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+                        <Route path="/signup" element={user ? <Navigate to="/" /> : <Signup />} />
                     </Routes>
                 </div>
             </BrowserRouter>

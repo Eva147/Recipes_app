@@ -1,44 +1,22 @@
-import { useState, useEffect } from 'react'
-import { auth, db } from '../firebase/config'
-import { useAuthContext } from './useAuthContext'
+import { useState } from 'react'
+import { auth } from '../firebase/config'
+import {signInWithEmailAndPassword} from "firebase/auth";
+import {useAuthContext} from "./useAuthContext";
 
 export const useLogin = () => {
-  const [isCancelled, setIsCancelled] = useState(false)
-  const [error, setError] = useState(null)
-  const [isPending, setIsPending] = useState(false)
-  const { dispatch } = useAuthContext()
+    const [error, setError] = useState(null)
+    const { dispatch } = useAuthContext()
 
-  const login = async (email, password) => {
-    setError(null)
-    setIsPending(true)
+    const login = (email, password) => {
+      setError(null)
 
-    try {
-      // login
-      const res = await auth.signInWithEmailAndPassword(email, password)
-
-      // update online status
-      const documentRef = db.collection('users').doc(res.user.uid)
-      await documentRef.update({ online: true })
-
-      // dispatch login action
-      dispatch({ type: 'LOGIN', payload: res.user })
-
-      if (!isCancelled) {
-        setIsPending(false)
-        setError(null)
-      }
+      signInWithEmailAndPassword(auth, email, password)
+          .then((res) => {
+              dispatch({ type: 'LOGIN', payload: res.user })
+          })
+          .catch((err) => {
+            setError(err.message)
+          })
     }
-    catch(err) {
-      if (!isCancelled) {
-        setError(err.message)
-        setIsPending(false)
-      }
-    }
-  }
-
-  useEffect(() => {
-    return () => setIsCancelled(true)
-  }, [])
-
-  return { login, isPending, error }
+    return {login, error}
 }

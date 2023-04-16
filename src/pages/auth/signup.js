@@ -7,17 +7,21 @@ import './signup.css'
 export default function Signup() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const [displayName, setDisplayName] = useState('')
 	const { signup, isPending, error } = useSignup()
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		signup(email, password, displayName)
+		signup(email, password).then(() => {
+			setEmail('')
+			setPassword('')
+		})
 	}
 
 	return (
 		<form onSubmit={handleSubmit} className="auth-form">
-			<h2>sign up</h2>
+			<div className='signup-header'>
+				<h2>Sign up</h2>
+			</div>
 			<label>
 				<span>email:</span>
 				<input
@@ -34,15 +38,6 @@ export default function Signup() {
 					type="password"
 					onChange={(e) => setPassword(e.target.value)}
 					value={password}
-				/>
-			</label>
-			<label>
-				<span>display name:</span>
-				<input
-					required
-					type="text"
-					onChange={(e) => setDisplayName(e.target.value)}
-					value={displayName}
 				/>
 			</label>
 			{!isPending && <button className="btn">Sign up</button>}

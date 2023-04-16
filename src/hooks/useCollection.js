@@ -16,13 +16,15 @@ export const useCollection = (c, _q) => {
         let ref = collection(db, c)
 
         if (q) {
-            ref = query(ref, where('title', '==', q))
+            ref = query(ref, where(...q))
         }
+
         const unsub = onSnapshot(ref, (snapshot) => {
             let results = []
             snapshot.docs.forEach(doc => {
-                results.push({...doc.data(), id: doc.id})
+                results.push({ id: doc.id, ...doc.data(),})
             })
+            console.log(`results`, results);
             setDocuments(results)
             setIsPending(false)
         }, (error) => {
@@ -30,7 +32,7 @@ export const useCollection = (c, _q) => {
             setIsPending(false)
         })
         return () => unsub()
-        
+
     }, [c, q])
     return {documents, isPending, error}
 }
